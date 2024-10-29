@@ -1,0 +1,5 @@
+pyautogen
+openai
+numpy
+pandas
+python-dotenv
