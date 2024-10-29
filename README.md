@@ -1,6 +1,8 @@
 # AI_Education
 Shaping the Future of Learning
 
+设计一个多智能体的Problem-Based Learning (PBL) 教育系统。系统的目标是通过对话式交互，帮助用户掌握数据库中的一系列知识点，并实现自动化的学习过程评估与反馈。
+
 
 ## About DataBase
 Currently using a MySQL database, the table is t1.
