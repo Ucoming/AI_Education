@@ -47,7 +47,7 @@ Shaping the Future of Learning
 
 ## 二、Workflow
 
-![image-20241030205102897](C:\Users\think\AppData\Roaming\Typora\typora-user-images\image-20241030205102897.png)
+![wf](E:\BaiduSyncdisk\code\项目\education_agent\wf.png)
 
 While（当有任意数据库中存在问题的"learned"字段为No时，执行以下循环）：
 
