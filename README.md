@@ -1,10 +1,70 @@
 # AI_Education
 Shaping the Future of Learning
 
-设计一个多智能体的Problem-Based Learning (PBL) 教育系统。系统的目标是通过对话式交互，帮助用户掌握数据库中的一系列知识点，并实现自动化的学习过程评估与反馈。
+这是一个多智能体的Problem-Based Learning (PBL) 教育系统。系统的目标是通过对话式交互，帮助用户掌握数据库中的一系列知识点，并实现自动化的学习过程评估与反馈。
 
+## 一、Agents
 
-## About DataBase
+### 1. Guider
+
+- 目的：给出欢迎语并根据数据库中的入门级别问题生成3-5个推荐问题或方向，创建不仅能吸引用户而且能促进批判性思维和理解的问题。
+
+- 特点：对于已经学过的问题，会在数据库中标记已学，最后当数据库中所有问题都标记为已学，告知用户这部分内容完成。
+
+- prompt：
+
+  ```
+  <待补充>
+  ```
+
+### 2. UserProxy
+
+- 目的：模拟用户提问和交互。
+
+### 3. Teacher
+
+- 目的：依据用户提问进行详细解答和对话，询问用户是否理解内容。如果用户已经掌握知识，则将信息传递给Evaluator进行评估。
+
+- 特点：优秀教导能力。
+
+- prompt：
+
+  ```
+  <待补充>
+  ```
+
+### 4. Evaluator
+
+- 目的：评估用户的学习进度和知识掌握程度，基于提供的材料生成测评题目，评估用户回答并提供建议。用固定的格式提供评估结果。
+
+- 特点：严格的进度评估和反馈。
+
+- prompt：
+
+  ```
+  <待补充>
+  ```
+
+## 二、Workflow
+
+![image-20241030205102897](C:\Users\think\AppData\Roaming\Typora\typora-user-images\image-20241030205102897.png)
+
+While（当有任意数据库中存在问题的"learned"字段为No时，执行以下循环）：
+
+1. **Guider**：提供欢迎语和引导性的问题（后续循环中，提供的问题从“learned”字段为No的问题中提取）。
+2. **UserProxy**：用户提问。
+3. 使用**similarity_match**函数，匹配相似的n个QA，将query+n个QA通过提示词形式传给**Teacher**。
+4. **Teacher**和**UserProxy**完成学习对话，触发stopword后，将信息传递给**Evaluator**。
+5. **Evaluator**：
+   - 对**UserProxy**所学知识点进行测评。
+   - 根据用户回答提供建议。
+   - 若认为用户掌握该部分内容，将数据库中的“learned”字段改为Yes。
+6. 计算学习进度：
+   - 若所有"learned"字段均为Yes，祝贺用户完成学习；
+   - 若有未完成学习的QA，返回Step 1继续学习，直到所有问题完成。
+
+## 三、About DataBase
+
 Currently using a MySQL database, the table is t1.
 ```sql
 -- auto-generated definition
