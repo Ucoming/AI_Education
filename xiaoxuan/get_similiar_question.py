@@ -23,7 +23,7 @@ def get_similar_questions(user_question, top_n=5):
         charset='utf8mb4'
     )
 
-    try:
+    try:  
         # 从数据库中获取问题列
         query = "SELECT question FROM t1"
         df = pd.read_sql(query, connection)

@@ -1,23 +1,27 @@
 import autogen
+import json
+import pandas as pd
 
 # OpenAI API配置
 config_list = autogen.config_list_from_json(env_or_file="OAI_CONFIG_LIST")
 
+# 示例QA数据库, 实际使用时从数据库中读取，目前暂时导入本地json文件····················
 
-# 示例QA数据库, 实际使用时从数据库中读取
-qa_database = {
-    "q1": {
-        "question": "什么是数据库索引？",
-        "answer": "数据库索引是一种数据结构，用于加快数据库查询速度...",
-        "learned": "no"
-    },
-    "q2": {
-        "question": "什么是事务的ACID特性？",
-        "answer": "ACID是数据库事务的四个基本特性：原子性、一致性、隔离性和持久性...",
-        "learned": "no"
-    }
-    # ... 更多QA对
-}
+# 从xiaoxuan/output.json读取QA数据
+with open('xiaoxuan/output.json', 'r', encoding='utf-8') as f:
+    qa_database = json.load(f)
+
+# Convert JSON to DataFrame
+df = pd.DataFrame(qa_database)
+
+# Add learner_tag column with default value 0
+df['learner_tag'] = 0
+# Add id column with sequential numbers starting from 1
+df['id'] = range(1, len(df) + 1)
+
+# 以上内容未来将替换为从数据库中读取····························
+
+qa_database = df
 
 def main():
     from multi_agent_edu_system import MultiAgentEducationSystem
