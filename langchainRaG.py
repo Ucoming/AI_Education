@@ -8,8 +8,8 @@ import os
 import pandas as pd
 import re
 
-os.environ["http_proxy"] = "http://127.0.0.1:33210"
-os.environ["https_proxy"] = "http://127.0.0.1:33210"
+os.environ["http_proxy"] = "http://127.0.0.1:XXXX"
+os.environ["https_proxy"] = "http://127.0.0.1:XXXXX"
 
 class DocumentRAG:
     def __init__(self, openai_api_key):
@@ -136,7 +136,7 @@ class DocumentRAG:
 
 
 if __name__ == "__main__":
-    rag = DocumentRAG(openai_api_key="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")
+    rag = DocumentRAG(openai_api_key="sk-proj-XXXXXXXXXXX8ngXXXxxxxxxxJrG37oSKXXXXXXXXXXXXXXXxCF6v6ViUpXXXXXXxxxxxA")
     rag.load_pdf(r"D:\Scientific_Research\Education_Agent_Design\课程大纲&教案&逐字稿&习题.pdf")
     rag.generate_questions(num_main_questions=5, num_sub_questions=3, output_format='xlsx')
 
